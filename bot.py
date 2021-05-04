@@ -6,19 +6,21 @@ import os
 
 load_dotenv()
 
+pincode = os.getenv("pincode")
+proxy_username = os.getenv("proxy_username")
+proxy_password = os.getenv("proxy_password")
+ifttt_applet_name = os.getenv("ifttt_applet_name")
+
 VACCINATION_SLOT_API_URL = "https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/calendarByPin"
-IFTTT_URL = "https://maker.ifttt.com/trigger/crypto_alert/with/key/"
+IFTTT_URL = f"https://maker.ifttt.com/trigger/{ifttt_applet_name}/with/key/"
 
 date = datetime.now().strftime("%d-%m-%Y")
-pincode = os.getenv("pincode")
 
 payload = {
     "pincode": pincode,
     "date": date,
 }
 
-proxy_username = os.getenv("proxy_username")
-proxy_password = os.getenv("proxy_password")
 
 proxy_url = (
     f"https://{proxy_username}:{proxy_password}@in-mum.prod.surfshark.com"
