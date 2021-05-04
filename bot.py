@@ -12,9 +12,12 @@ IFTTT_URL = "https://maker.ifttt.com/trigger/crypto_alert/with/key/"
 date = datetime.now().strftime("%d-%m-%Y")
 pincode = "751030"
 
-response = requests.get(
-    VACCINATION_SLOT_API_URL, params={"pincode": pincode, "date": date}
-)
+payload = {
+    'pincode': pincode,
+    'date': date,
+}
+
+response = requests.get(VACCINATION_SLOT_API_URL, params=payload)
 print(response)
 
 # if len(response["centers"]) > 0:
