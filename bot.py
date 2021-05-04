@@ -35,7 +35,7 @@ response = requests.get(
 
 if len(response["centers"]) > 0:
     message = "<b>Vaccination Slots are available, check COWIN API or website for details.</b>"
-    print(response.json())
+    print(response)
     print(
         requests.post(
             IFTTT_URL + os.getenv("ifttt_api_key"), data={"value1": message}
