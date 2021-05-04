@@ -13,11 +13,17 @@ date = datetime.now().strftime("%d-%m-%Y")
 pincode = "751030"
 
 payload = {
-    'pincode': pincode,
-    'date': date,
+    "pincode": pincode,
+    "date": date,
 }
 
-response = requests.get(VACCINATION_SLOT_API_URL, params=payload)
+headers = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.93 Safari/537.36"
+}
+
+response = requests.get(
+    VACCINATION_SLOT_API_URL, params=payload, headers=headers
+)
 print(response)
 
 # if len(response["centers"]) > 0:
