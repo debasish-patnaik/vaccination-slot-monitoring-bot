@@ -14,12 +14,13 @@ pincode = "751030"
 
 response = requests.get(
     VACCINATION_SLOT_API_URL, params={"pincode": pincode, "date": date}
-).json()
+)
+print(response)
 
-if len(response["centers"]) > 0:
-    message = "<b>Vaccination Slots are available, check COWIN API or website for details.</b>"
-    print(
-        requests.post(
-            IFTTT_URL + os.getenv("ifttt_api_key"), data={"value1": message}
-        ).content.decode("ascii")
-    )
+# if len(response["centers"]) > 0:
+#     message = "<b>Vaccination Slots are available, check COWIN API or website for details.</b>"
+#     print(
+#         requests.post(
+#             IFTTT_URL + os.getenv("ifttt_api_key"), data={"value1": message}
+#         ).content.decode("ascii")
+#     )
