@@ -10,7 +10,7 @@ VACCINATION_SLOT_API_URL = "https://cdn-api.co-vin.in/api/v2/appointment/session
 IFTTT_URL = "https://maker.ifttt.com/trigger/crypto_alert/with/key/"
 
 date = datetime.now().strftime("%d-%m-%Y")
-pincode = "764020"
+pincode = "751024"
 
 response = requests.get(
     VACCINATION_SLOT_API_URL, params={"pincode": pincode, "date": date}
