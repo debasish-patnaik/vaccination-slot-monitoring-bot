@@ -42,7 +42,16 @@ response = requests.get(
 ).json()
 
 if len(response["centers"]) > 0:
-    message = "<b>Vaccination Slots are available, check COWIN API or website for details.</b>"
+
+    all_sessions = []
+
+    for center in response["centers"]:
+        for session in center["sessions"]:
+            all_sessions.append(session)
+
+    age_groups = set([session["min_age_limit"] for session in all_sessions])
+
+    message = f"<b>Vaccination Slots are available for age-group {age_groups}, check COWIN API or website for details.</b>"
     print(response)
     print(
         requests.post(
