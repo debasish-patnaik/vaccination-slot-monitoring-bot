@@ -4,6 +4,10 @@ from datetime import datetime
 from dotenv import load_dotenv
 import os
 
+from fake_useragent import UserAgent
+
+ua = UserAgent()
+
 load_dotenv()
 
 pincode = os.getenv("pincode")
@@ -21,6 +25,8 @@ payload = {
     "date": date,
 }
 
+headers = {"User-Agent": ua.random}
+
 
 proxy_url = (
     f"https://{proxy_username}:{proxy_password}@in-mum.prod.surfshark.com"
@@ -32,7 +38,7 @@ proxy = {
 }
 
 response = requests.get(
-    VACCINATION_SLOT_API_URL, params=payload, proxies=proxy
+    VACCINATION_SLOT_API_URL, params=payload, proxies=proxy, headers=headers
 ).json()
 
 if len(response["centers"]) > 0:
